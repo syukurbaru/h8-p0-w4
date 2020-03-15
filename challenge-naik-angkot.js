@@ -1,32 +1,30 @@
 function naikAngkot(arrPenumpang) {
   var rute = ["A", "B", "C", "D", "E", "F"];
-  //your code here
-  // buat variabel baru untuk menampung hasil
-  var result = [];
-  // lakukan looping untuk memeriksa variabel
-  for (var i = 0; i < arrPenumpang.length; i++) {
-    // buat objek untuk memasukan kedalam array result
-    var obj = {};
-    (obj.penumpang = arrPenumpang[i][0]),
-      (obj.naikDari = arrPenumpang[i][1]),
-      (obj.tujuan = arrPenumpang[i][2]),
-      obj.bayar;
-    // console.log(obj);
-    // Melooping rute untuk mendapatkan biaya per tujuan
+  var jalan = [];
+  for (let i = 0; i < arrPenumpang.length; i++) {
+    var trip = {
+      // Membuat objek baru
+      penumpang: arrPenumpang[i][0],
+      naikDari: arrPenumpang[i][1],
+      tujuan: arrPenumpang[i][2],
+      biaya: 0
+    };
+
+    let awal = (akhir = 0);
     for (var j = 0; j < rute.length; j++) {
-      if (arrPenumpang[i][1] === rute[j]) {
-        var keberangkatan = rute.indexOf(rute[j]);
-      }
-      if (arrPenumpang[i][2] === rute[j]) {
-        var tujuanSampai = rute.indexOf(rute[j]);
+      if (rute[j] == trip.naikDari) {
+        awal = j;
+      } else if (rute[j] == trip.tujuan) {
+        akhir = j;
+        break;
       }
     }
-    obj.bayar = (tujuanSampai - keberangkatan) * 2000;
-    // console.log(obj.bayar);
-    result.push(obj);
+    trip.biaya = (akhir - awal) * 2000; // Hitung biaya per tripnya
+    jalan.push(trip);
   }
-  return result;
+  return jalan;
 }
+
 //TEST CASE
 console.log(
   naikAngkot([

@@ -1,48 +1,20 @@
 function graduates(students) {
-  // Code disini
-  // Inisialisai variabel
-  var listClass = [];
-  var school = {};
-
-  // Membuat List kelas dari input
-  for (var i = 0; i < students.length; i++) {
-    // Dapatkan list Kelas
-    var studentClass = students[i].class;
-    if (listClass.includes(studentClass)) {
+  var lulus = {};
+  for (let i = 0; i < students.length; i++) {
+    if (lulus[students[i].class] == undefined) {
+      lulus[students[i].class] = [students[i]];
     } else {
-      listClass.push(studentClass);
-    }
-  }
-  // console.log(listClass);
-
-  // Membuat Objek Kelas
-  for (var j = 0; j < listClass.length; j++) {
-    var schoolKey = listClass[j];
-    school[schoolKey] = [];
-  }
-  // console.log(school);
-
-  // Memisahkan murid berdarakan kreteria
-  for (var key in school) {
-    for (var k = 0; k < students.length; k++) {
-      var studentClass = students[k].class;
-      var studentScore = students[k].score;
-      if (studentScore > 75) {
-        if (studentClass === key) {
-          school[key].push(students[k]);
-        }
+      if (students[i].score > 75) {
+        lulus[students[i].class].push(students[i]);
       }
     }
   }
-  // console.log(school[key]);
-  // DELETING KEY CLASS FROM OBJECT school (as output expected)
-  for (var key in school) {
-    for (var l = 0; l < school[key].length; l++) {
-      delete school[key][l].class;
+  for (let j in lulus) {
+    for (let k of lulus[j]) {
+      delete k.class;
     }
   }
-
-  return school;
+  return lulus;
 }
 
 console.log(
