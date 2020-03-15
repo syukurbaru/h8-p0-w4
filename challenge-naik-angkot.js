@@ -1,7 +1,7 @@
 function naikAngkot(arrPenumpang) {
   var rute = ["A", "B", "C", "D", "E", "F"];
   var jalan = [];
-  for (let i = 0; i < arrPenumpang.length; i++) {
+  for (var i = 0; i < arrPenumpang.length; i++) {
     var trip = {
       // Membuat objek baru
       penumpang: arrPenumpang[i][0],
@@ -10,7 +10,7 @@ function naikAngkot(arrPenumpang) {
       biaya: 0
     };
 
-    let awal = (akhir = 0);
+    var awal = (akhir = 0);
     for (var j = 0; j < rute.length; j++) {
       if (rute[j] == trip.naikDari) {
         awal = j;
